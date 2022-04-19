@@ -1,0 +1,7 @@
+server:
+  port: 8080
+spring:
+  profiles:
+    active: native
+    
+springfox.documentation.swagger.v2.path: /swagger-api
