@@ -1,7 +1,11 @@
 server:
-  port: 8080
+  port: 8000
 spring:
   profiles:
-    active: native
-    
-springfox.documentation.swagger.v2.path: /swagger-api
+    active: local
+  data:
+    mongodb:
+      uri: mongodb+srv://amrita:amrita123456@cluster0.gzcih.mongodb.net/accounting
+      database: accounting
+
+

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.accounting.model.Transaction;
-import com.accounting.repo.TransactionRepository;
+import com.accounting.repo.TransactionRepositoryImpl;
 
 
 @RestController
@@ -21,7 +21,7 @@ public class TransactionsController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(TransactionsController.class);
 	
 	@Autowired(required = false)
-	TransactionRepository repository;
+	TransactionRepositoryImpl repository;
 	
 	@PostMapping("/transaction")
 	public Transaction transactions(@RequestBody Transaction transaction) {
@@ -30,7 +30,7 @@ public class TransactionsController {
 	}
 	
 	@GetMapping("/transaction/{id}")
-	public Transaction findById(@PathVariable("id") Long id) {
+	public Transaction findById(@PathVariable("id") String id) {
 		LOGGER.info("Transaction find: id={}", id);
 		return repository.findById(id);
 	}

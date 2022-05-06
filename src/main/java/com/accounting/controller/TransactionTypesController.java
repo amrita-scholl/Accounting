@@ -11,10 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.accounting.model.Customer;
 import com.accounting.model.TransactionType;
-import com.accounting.repo.CustomerRepository;
-import com.accounting.repo.TransactionTypeRepository;
+import com.accounting.repo.TransactionTypeRepositoryImpl;
 
 
 @RestController
@@ -23,7 +21,7 @@ public class TransactionTypesController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(TransactionTypesController.class);
 	
 	@Autowired(required = false)
-	TransactionTypeRepository repository;
+	TransactionTypeRepositoryImpl repository;
 	
 	@PostMapping("/transactionType")
 	public TransactionType accounts(@RequestBody TransactionType transactionType) {
@@ -32,7 +30,7 @@ public class TransactionTypesController {
 	}
 	
 	@GetMapping("/transactionType/{id}")
-	public TransactionType findById(@PathVariable("id") Long id) {
+	public TransactionType findById(@PathVariable("id") String id) {
 		LOGGER.info("TransactionType find: id={}", id);
 		return repository.findById(id);
 	}

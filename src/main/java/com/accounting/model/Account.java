@@ -1,31 +1,39 @@
 package com.accounting.model;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import lombok.Data;
+
+@Data
+@Document(collection = "accounts")
 public class Account {
 
-	private Long accountId;
-	private Long customerId;
+	@Id
+	public String id;
+
+	private String accountId;
+
 	private String minBalance;
 	private String currentBalance;
-	private String dateopened;
-	private String dateclosed;
+	private String dateOpened;
+	private String dateClosed;
 
-	public Account() {
 
-	}
-	
-	public Account(Long accountId, String minBalance, String currentBalance, String dateopened, String dateclosed) {
+	public Account(String id, String accountId, String minBalance, String currentBalance, String dateOpened, String dateClosed) {
+		super();
+		this.id = id;
 		this.accountId = accountId;
 		this.minBalance = minBalance;
 		this.currentBalance = currentBalance;
-		this.dateopened = dateopened;
-		this.dateclosed = dateclosed;
+		this.dateOpened = dateOpened;
+		this.dateClosed = dateClosed;
 	}
 
-	public Long getAccountId() {
+	public String getAccountId() {
 		return accountId;
 	}
 
-	public void setAccountId(Long accountId) {
+	public void setAccountId(String accountId) {
 		this.accountId = accountId;
 	}
 
@@ -45,33 +53,25 @@ public class Account {
 		this.currentBalance = currentBalance;
 	}
 
-	public Long getCustomerId() {
-		return customerId;
+	public String getdateOpened() {
+		return dateOpened;
 	}
 
-	public void setCustomerId(Long customerId) {
-		this.customerId = customerId;
+	public void setdateOpened(String dateOpened) {
+		this.dateOpened = dateOpened;
 	}
 
-	public String getDateOpened() {
-		return dateopened;
+	public String getdateClosed() {
+		return dateClosed;
 	}
 
-	public void setDateOpened(String dateopened) {
-		this.dateopened = dateopened;
-	}
-
-	public String getDateClosed() {
-		return dateclosed;
-	}
-
-	public void setDateClosed(String dateclosed) {
-		this.dateclosed = dateclosed;
+	public void setdateClosed(String dateClosed) {
+		this.dateClosed = dateClosed;
 	}
 
 	@Override
 	public String toString() {
-		return "Employee [accountId=" + accountId + ", customerId=" + customerId + ", dateclosed=" + dateclosed
+		return "Employee [accountId=" + accountId + ", dateClosed=" + dateClosed
 				+ ", minBalance=" + minBalance + ", currentBalance=" + currentBalance + "]";
 	}
 

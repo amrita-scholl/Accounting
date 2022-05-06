@@ -1,12 +1,19 @@
 package com.accounting.model;
 
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import lombok.Data;
+
+@Data
+@Document(collection = "transactions")
 public class Transaction {
 
-	private Long transactionId;
-	private Long accountId;
+	@Id
+	private String id;
+	private String transactionId;
 	private String transactionDate;
-	private Long transactionTypeId;
+	private String transactionTypeId;
 	private String transactionAmount;
 	private String transactionNote;
 	private String balance;
@@ -15,9 +22,10 @@ public class Transaction {
 
 	}
 	
-	public Transaction(Long transactionId, Long accountId, String transactionDate, Long transactionTypeId, String transactionAmount,String transactionNote, String balance) {
+	public Transaction(String id, String transactionId, String transactionDate, String transactionTypeId, String transactionAmount,String transactionNote, String balance) {
+		super();
+		this.id = id;
 		this.transactionId = transactionId;
-		this.accountId = accountId;
 		this.transactionDate = transactionDate;
 		this.transactionTypeId = transactionTypeId;
 		this.transactionAmount = transactionAmount;
@@ -25,21 +33,14 @@ public class Transaction {
 		this.balance = balance;
 	}
 
-	public Long getTransactionId() {
+	public String getTransactionId() {
 		return transactionId;
 	}
 
-	public void setTransactionId(Long transactionId) {
+	public void setTransactionId(String transactionId) {
 		this.transactionId = transactionId;
 	}
 
-	public Long getAccountId() {
-		return accountId;
-	}
-
-	public void setAccountId(Long accountId) {
-		this.accountId = accountId;
-	}
 
 	public String getTransactionDate() {
 		return transactionDate;
@@ -49,11 +50,11 @@ public class Transaction {
 		this.transactionDate = transactionDate;
 	}
 
-	public Long getTransactionTypeId() {
+	public String getTransactionTypeId() {
 		return transactionTypeId;
 	}
 
-	public void setTransactionTypeId(Long transactionTypeId) {
+	public void setTransactionTypeId(String transactionTypeId) {
 		this.transactionTypeId = transactionTypeId;
 	}
 
@@ -83,7 +84,7 @@ public class Transaction {
 
 	@Override
 	public String toString() {
-		return "Employee [transactionId=" + transactionId + ", accountId=" + accountId + ", transactionDate=" + transactionDate
+		return "Employee [transactionId=" + transactionId +  ", transactionDate=" + transactionDate
 				+ ", transactionTypeId=" + transactionTypeId + ", balance=" + balance 
 				+ ", transactionAmount=" + transactionAmount + ", transactionNote=" + transactionNote +"]";
 	}

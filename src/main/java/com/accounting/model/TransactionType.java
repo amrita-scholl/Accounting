@@ -1,8 +1,17 @@
 package com.accounting.model;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import lombok.Data;
+
+@Data
+@Document(collection = "transactiontype")
 public class TransactionType {
 
-	private Long transactionTypeId;
+	@Id
+	private String id;
+
+	private String transactionTypeId;
 	private String transactionType;
 	
 
@@ -10,16 +19,17 @@ public class TransactionType {
 
 	}
 	
-	public TransactionType(Long transactionTypeId , String transactionType) {
+	public TransactionType(String id,String transactionTypeId , String transactionType) {
+		this.id = id;
 		this.transactionType = transactionType;
 		this.transactionTypeId = transactionTypeId;
 	}
 
-	public Long getTransactionTypeId() {
+	public String getTransactionTypeId() {
 		return transactionTypeId;
 	}
 
-	public void setTransactionTypeId(Long transactionTypeId) {
+	public void setTransactionTypeId(String transactionTypeId) {
 		this.transactionTypeId = transactionTypeId;
 	}
 

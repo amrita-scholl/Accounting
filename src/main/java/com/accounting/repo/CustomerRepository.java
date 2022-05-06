@@ -1,29 +1,18 @@
 package com.accounting.repo;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.accounting.model.Customer;
 
-public class CustomerRepository {
+import org.springframework.data.domain.Example;
+import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.mongodb.repository.Query;
 
-	private List<Customer> customers = new ArrayList<>();
-	
-	public Customer add(Customer customer) {
-		customer.setCustomerId((long) (customers.size()+1));
-		customers.add(customer);
-		return customer;
-	}
-	
-	public Customer findById(Long id) {
-		return customers.stream()
-				.filter(a -> a.getCustomerId().equals(id))
-				.findFirst()
-				.orElseThrow();
-	}
-	
-	public List<Customer> findAll() {
-		return customers;
-	}
-		
+import java.util.List;
+import java.util.Optional;
+
+public interface CustomerRepository extends MongoRepository<Customer, String> {
+    @Query("{customerId:'?0'}")
+    Optional<Customer> findOne(String customerId);
+
+    @Query("{'*'}")
+    List<Customer> findAll();
 }

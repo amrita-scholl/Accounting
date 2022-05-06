@@ -1,42 +1,42 @@
 package com.accounting.model;
 
-import java.sql.Date;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+import lombok.Data;
+
+@Data
+@Document(collection = "customers")
 public class Customer {
 
-	private Long id;
-	private Long phone;
+	@Id
+	private String id;
+	private String customerId;
 	private String email;
 	private String name;
 	private String dateopened;
+
 	private String dateclosed;
 
 	public Customer() {
 
 	}
 	
-	public Customer(Long phone, String email, String name, String dateopened, String dateclosed) {
-		this.phone = phone;
+	public Customer(String id,String email, String name, String dateopened, String dateclosed) {
+		super();
+		this.id = id;
 		this.email = email;
 		this.name = name;
 		this.dateopened = dateopened;
 		this.dateclosed = dateclosed;
 	}
 
-	public Long getCustomerId() {
-		return id;
+	public String getCustomerId() {
+		return customerId;
 	}
 
-	public void setCustomerId(Long id) {
-		this.id = id;
-	}
-
-	public Long getCustomerPhone() {
-		return phone;
-	}
-
-	public void setCustomerPhone(Long phone) {
-		this.phone = phone;
+	public void setCustomerId(String customerId) {
+		this.customerId = customerId;
 	}
 
 	public String getEmail() {
@@ -55,25 +55,25 @@ public class Customer {
 		this.name = name;
 	}
 
-	public String getDateOpened() {
+	public String getdateopened() {
 		return dateopened;
 	}
 
-	public void setDateOpened(String dateopened) {
+	public void setdateopened(String dateopened) {
 		this.dateopened = dateopened;
 	}
 
-	public String getDateClosed() {
+	public String getdateclosed() {
 		return dateclosed;
 	}
 
-	public void setDateClosed(String dateclosed) {
+	public void setdateclosed(String dateclosed) {
 		this.dateclosed = dateclosed;
 	}
 
 	@Override
 	public String toString() {
-		return "Employee [id=" + id + ", email=" + email + ", dateclosed=" + dateclosed
+		return "Employee [id=" + id + ", customerId=" + customerId + ", dateclosed=" + dateclosed
 				+ ", name=" + name + ", dateopened=" + dateopened + "]";
 	}
 
